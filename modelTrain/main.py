@@ -5,12 +5,10 @@
 # Author:       neu
 # Date:         2020/7/30
 '''
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 
 from keras.models import Sequential, load_model
-from keras.layers import Conv2D,MaxPool2D,Flatten,Dense, BatchNormalization
+from keras.layers import Conv2D, MaxPool2D, Flatten,Dense, BatchNormalization
 from keras.datasets import mnist
 from keras.utils import to_categorical
 
@@ -76,16 +74,12 @@ if __name__ == '__main__':
 
     model = build_model()
     print(model.summary())
-    model.save('model.h5')
     history = model.fit(x_train, y_train,
                         epochs=5,
                         batch_size=64,
                         validation_split=0.3)
+    model.save('model.h5')
     draw_train_history(history)
 
     loss, accuracy = model.evaluate(x_test, y_test)
-    print("test loss: {}, test accuracy: {}".format(loss, accuracy))
-
-    new_model = load_model('model.h5')
-    loss, accuracy = new_model.evaluate(x_test, y_test)
     print("test loss: {}, test accuracy: {}".format(loss, accuracy))
