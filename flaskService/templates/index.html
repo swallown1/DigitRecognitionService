@@ -3,24 +3,32 @@
 <head>
     <meta charset="utf-8">
     <style>
-        canvas {
+        .i-canvas {
             border: 1px solid #e6e6e6;
+        	margin-left: 20%;
+        	margin-right: 20%;
+        	background-color: #3d4444;
         }
         .sub {
             display: none;
         }
-		#result{
-			display: inline;
-		}
-		#flooter{
-			padding: 1%;
-			padding-left: 10%;
-
-		}
-		#label{
+        #result{
+        	display: inline;
+        }
+        #flooter{
+        	padding-bottom: 10%;
+        }
+        #label{
+        	font-size: 20px;
+        	display: inline;
+        }
+        canvas{
+        	background-color: #3d4444;
+        	padding: 0;
+        }
+		.subtitle{
+			margin-top: 10px;
 			font-size: 20px;
-			display: inline;
-
 		}
     </style>
 </head>
@@ -34,17 +42,20 @@
 	</header>
 	
 	<div class="htmleaf-content bgcolor-8">
-		   <div align="center" class="i-canvas">
-				<canvas id="canvas" width = "800" height = "600"></canvas>
-				<ul>
-					<button onclick="exportCanvasAsPNG()">我要重来</button>
-					<button onclick="UploadPic()">猜猜是几</button>
-				</ul>
-		   </div>
-		
+		<span class="subtitle">写在中间位置</span>
+		<div align="center" class="i-canvas">
+			<canvas id="canvas" width = "400" height = "360"></canvas>
+		</div>
+		<ul align='center'>
+			<button onclick="exportCanvasAsPNG()">我要重来</button>
+			<button onclick="UploadPic()">猜猜是几</button>
+		</ul>
 	</div>
-	<p id="label">我猜你写的数字是：</p><p id="result">*****</p>
-
+	<div id="flooter" align="center" class="bgcolor-8">
+		<div>
+			<p id="label">我猜你写的数字是：</p><p id="result">*****</p>
+		</div>
+	</div>
 </div>
 <!--    <canvas id="canvas" width = "800" height = "600"></canvas>
 	<button onclick="exportCanvasAsPNG('canvas','./')">保存</button> -->
