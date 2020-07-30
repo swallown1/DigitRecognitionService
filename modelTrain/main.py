@@ -7,13 +7,12 @@
 '''
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 from keras.layers import Conv2D,MaxPool2D,Flatten,Dense, BatchNormalization
 from keras.datasets import mnist
 from keras.utils import to_categorical
-
-import matplotlib.pyplot as plt
 
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -53,8 +52,8 @@ def draw_train_history(history):
 
     # summarize history for accuracy
     plt.subplot(211)
-    plt.plot(history.history['accuracy'])
-    plt.plot(history.history['val_accuracy'])
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
     plt.title('model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
@@ -85,4 +84,8 @@ if __name__ == '__main__':
     draw_train_history(history)
 
     loss, accuracy = model.evaluate(x_test, y_test)
+    print("test loss: {}, test accuracy: {}".format(loss, accuracy))
+
+    new_model = load_model('model.h5')
+    loss, accuracy = new_model.evaluate(x_test, y_test)
     print("test loss: {}, test accuracy: {}".format(loss, accuracy))
