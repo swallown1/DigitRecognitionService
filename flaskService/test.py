@@ -6,18 +6,8 @@
 # Date:         2020/7/30
 '''
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-from keras.models import Sequential, load_model
-from keras.layers import Conv2D,MaxPool2D,Flatten,Dense, BatchNormalization
 from keras.datasets import mnist
 from keras.utils import to_categorical
-
-import os
-os.environ['KMP_DUPLICATE_LIB_OK']='True'
-
 
 def load_data():
     (x_train, y_train), (x_test, y_test)  = mnist.load_data()
@@ -31,9 +21,14 @@ def load_data():
 
     return (x_train, y_train), (x_test, y_test)
 
+def generate_data(x_test, y_test):
+    data = x_test[55:56]
+    print(data.shape)
+    label = y_test[55]
+    return data, label
+
 if __name__ == '__main__':
     (x_train, y_train), (x_test, y_test) = load_data()
-
-    new_model = load_model('model.h5')
-    loss, accuracy = new_model.evaluate(x_test, y_test)
-    print("test loss: {}, test accuracy: {}".format(loss, accuracy))
+    data, label = generate_data(x_test, y_test)
+    print(data)
+    print(label)
